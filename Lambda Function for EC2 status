@@ -1,0 +1,17 @@
+import boto3
+client = boto3.client('ec2', region_name="sa-east-1")
+
+
+def lambda_handler(event, context):
+
+ response=client.describe_instances()
+
+ for reservation in response["Reservations"]:
+  for instance in reservation["Instances"]:
+    id=[instance["InstanceId"]]
+    status = str(instance["State"]["Name"])
+    if status == "running":
+      print("running instance" + "\t" + instance["InstanceId"] + "\t" + instance["InstanceType"])
+    elif status == "stopped":
+      print("stopped instance" + "\t" + instance["InstanceId"] + "\t" + instance["InstanceType"])
+ return("List of all the running instances") 
