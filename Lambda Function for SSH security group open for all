@@ -1,0 +1,26 @@
+import boto3
+
+protocol = "ssh"
+port = "22"
+client = boto3.client('ec2', region_name="sa-east-1")
+ec2=client.describe_instances()
+
+def lambda_handler(event, context):
+
+ response = client.describe_security_groups(
+     Filters=[
+         {
+             'Name': 'ip-permission.from-port',
+             'Values': ['22'],              
+         } and
+         {
+             'Name': 'ip-permission.to-port',
+             'Values': ['22'],
+         } and
+         {
+             'Name': 'ip-permission.cidr',
+             'Values': ['0.0.0.0/0'],
+         },
+     ],
+    )
+ return (response)
