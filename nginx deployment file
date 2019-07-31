@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: gau-nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gau-nginx
+  template:
+    metadata:
+      labels:
+        app: gau-nginx
+    spec:
+      containers:
+      - name: gau-nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+        - containerPort: 443
