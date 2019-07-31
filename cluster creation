@@ -1,0 +1,35 @@
+	TO SETUP K8S Cluster:
+	
+	Youtube: https://www.youtube.com/watch?v=ndNKI5GBdd0      
+	Github: https://github.com/ValaxyTech/DevOpsDemos/blob/master/Kubernetes/k8s-setup.md
+	
+	
+	Youtube: https://www.youtube.com/watch?v=TXGmHzELQ5A
+	Github:  https://github.com/advithdevopsworld/kubernetes/blob/master/KOPS%20installation%20in%20aws
+	
+	
+	
+	
+	TO Delete K8s Cluster:-
+	
+	1. Find from where cluster has been provisioned like Staging/Prod Marketplace
+	2. Login to Staging/Prod EC2 instance (Check in AWS EC2 instance)
+	3. Go to /Var/lib/docker/volume/fe-config/_data
+	4. Cd  <Order_ID>
+	5. Go to k8s_terraform/ssh_key# ls -lrt , Private Key & Details are there
+	6. Cat Details
+	7. Ssh -I Private key ubuntu@bastion_ip (SSH)
+	8. Login to bastion
+	9. Delete the cluster
+	10. Kops get cluster
+	11. Kops delete cluster <cluster_name> --yes
+	12. Exit
+	13. Terraform destroy
+
+
+Lambda Function doc:
+https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.describe_instances 
+
+https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInstances.html 
+
+https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.describe_security_groups
