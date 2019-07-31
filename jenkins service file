@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service: jenkins-lb-svc
+  name: gau-jenkins
+spec:
+  ports:
+  - name: "jenkins-master"
+    port: 8080
+    targetPort: 8080
+  - name: "jenkins-slave"
+    port: 50000
+    targetPort: 50000
+  selector:
+    app: gau-jenkins
+  type: ClusterIP
