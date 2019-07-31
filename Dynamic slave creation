@@ -1,0 +1,24 @@
+def label = "mypod-${UUID.randomUUID().toString()}"
+def serviceaccount = "che"
+podTemplate(label: label, serviceAccount: serviceaccount, containers: [
+    containerTemplate(name: 'jdk', image: 'openjdk:8-jdk', ttyEnabled: true, command: 'cat'),
+  ])
+  
+ {
+    node(label) {
+        stage('Installing npm') {
+            container('jdk') {                
+                sh 'sudo apt-get'
+				sh 'install nodejs'
+				sh 'sudo apt-get install npm'
+            }
+        }
+        
+        stage('Checking Version') {
+            container('jdk') {
+                sh 'nodejs -v'
+				sh 'npm -v'
+            }
+        }
+    }
+}
