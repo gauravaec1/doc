@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jenkins-deployment
+  labels:
+    app: gau-jenkins
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gau-jenkins
+  template:
+    metadata:
+      labels:
+        app: gau-jenkins
+    spec:
+      containers:
+      - name: gau-jenkins
+        image: jenkinsci/blueocean
+        ports:
+        - containerPort: 8080
+        - containerPort: 50000
